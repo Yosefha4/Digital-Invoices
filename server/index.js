@@ -18,12 +18,24 @@ app.get("/invoices", async (req,res) => {
 
     const users = await pool.query("SELECT user_name,user_id FROM users;");
     res.status(201).send(users.rows);
-    console.log("Invoices get method !!!");
+    // console.log("Invoices get method !!!");
   } catch (error) {
     res.status(500).send(error.message);
 
   }
 });
+
+app.get("/invoices/userDetails/:userId",async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const userDet = await pool.query('SELECT user_name,user_address,user_email FROM users WHERE user_id = $1', [userId]);
+    res.json(userDet.rows);
+  } catch (error) {
+    return res.status(404).send("User not found");
+
+  }
+})
 
   //get all invoices by user_id
   app.get("/invoices/:userId", async (req, res) => {
