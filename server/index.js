@@ -14,13 +14,10 @@ app.use(express.json());
   //get user id by name
 app.get("/invoices", async (req,res) => {
   try {
-    const {user_name} = req.body;
-    if(user_name.length < 1 || !user_name){
-      res.status(401).send("User not found")
-    }
+    // const {user_name} = req.body;
 
-    const user = await pool.query("SELECT (user_id,user_address,user_email) FROM users WHERE user_name = $1;",[user_name]);
-    res.status(201).send(user);
+    const users = await pool.query("SELECT user_name,user_id FROM users;");
+    res.status(201).send(users.rows);
     console.log("Invoices get method !!!");
   } catch (error) {
     res.status(500).send(error.message);
