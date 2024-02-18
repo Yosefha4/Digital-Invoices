@@ -1,10 +1,11 @@
 import './App.css';
 import Homepage from './components/Homepage';
 import Navbar from './components/Navbar';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import UserProfile from './components/UserProfile';
 
 function App() {
+  const {user_id} = useParams();
   return (
     <div className="App">
       <header>
