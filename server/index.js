@@ -10,89 +10,10 @@ app.use(express.json());
 
 //Routes
 
-//get user & invoice
-  //get user id by name
-app.get("/invoices", async (req,res) => {
-  try {
-    // const {user_name} = req.body;
-
-    const users = await pool.query("SELECT user_name,user_id FROM users;");
-    res.status(201).send(users.rows);
-    // console.log("Invoices get method !!!");
-  } catch (error) {
-    res.status(500).send(error.message);
-
-  }
-});
-
-app.get("/invoices/userDetails/:userId",async (req, res) => {
-  const userId = req.params.userId;
-
-  try {
-    const userDet = await pool.query('SELECT user_name,user_address,user_email FROM users WHERE user_id = $1', [userId]);
-    res.json(userDet.rows);
-  } catch (error) {
-    return res.status(404).send("User not found");
-
-  }
-})
-
-  //get all invoices by user_id
-  app.get("/invoices/:userId", async (req, res) => {
-    const userId = req.params.userId;
-    try {
-      // Query the database to fetch all invoices for the specified user ID
-      const invoices = await pool.query('SELECT * FROM invoices WHERE user_id = $1', [userId]);
-  
-      // Return the invoices as a response
-      res.json(invoices.rows);
-    } catch (err) {
-      console.error('Error fetching invoices:', err);
-      res.status(500).send('Internal Server Error');
-    }
-  });
+app.use('/api/invoices', require('./routes/InvoiceRoute'));
+app.use('/api/users', require('./routes/UserRoute'));
 
 
-
-//create user & invoice
-app.post("/invoices", async (req, res) => {
-  try {
-    const {
-      user_name,
-      invoice_number,
-      invoice_date,
-      total_amount,
-    } = req.body;
-
-    // Find user_id based on user_name and user_address
-    const userResult = await pool.query( "SELECT * FROM users WHERE user_name = $1", [user_name]);
-
-    // console.log(userResult)
-    if (userResult.rows.length === 0) {
-      return res.status(404).send("User not found");
-    }
-    //Take the user_id from userResult
-    const user_id = userResult.rows[0].user_id;
-
-    // Insert new invoice into the database
-    await pool.query("INSERT INTO invoices (user_id, invoice_number, invoice_date, total_amount) VALUES ($1, $2, $3, $4);", [
-      user_id,
-      invoice_number,
-      invoice_date,
-      total_amount,
-    ]);
-
-    res.status(201).send("Invoice added successfully");
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-
-//update user & invoice
-
-//delete user & invoice
 
 app.listen(5002, () => {
   console.log("Server listen on port: 5002 !");
