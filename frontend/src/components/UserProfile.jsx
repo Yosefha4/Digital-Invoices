@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import InvoiceItem from "./InvoiceItem";
+import { Link, useParams } from "react-router-dom";
+// import InvoiceItem from "./InvoiceItem";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -14,7 +14,7 @@ const UserProfile = () => {
   const fetchUserDetails = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5002/invoices/userDetails/${userId}`
+        `http://localhost:5002/api/users/userDetails/${userId}`
       );
       setUserName(res.data[0].user_name);
       setUserAdd(res.data[0].user_address);
@@ -26,7 +26,7 @@ const UserProfile = () => {
   };
   const fetchUserInvoices = async () => {
     try {
-      const res = await axios.get(`http://localhost:5002/invoices/${userId}`);
+      const res = await axios.get(`http://localhost:5002/api/invoices/${userId}`);
       console.log(res.data);
       setUserInvoices(res.data);
     } catch (error) {
@@ -56,16 +56,40 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="userInvoices">
+        <table className="table" >
+        <thead>
+            <tr>
+              <th>Invoice ID</th>
+              <th>Invoice Date</th>
+              <th>Total Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+{userInvoices.map((item,index) => (
+  <tr key={index}>
+    <td>{item.invoice_number}</td>
+    <td> {item.invoice_date}</td>
+    <td>{item.total_amount}</td>
+    <td>
+    {/* <Link className="moreBtn" to={{ pathname: `/invoice/${item.invoice_id}`, state: { item } }}>More</Link> */}
+
+      <Link className="moreBtn"  to={`/invoice/${item.invoice_id}`} state={{item}}>More</Link>
+      {/* <button className="moreBtn">More</button> */}
+    </td>
+
+  </tr>
+))}
+          </tbody>
+        </table>
+      </div>
+      {/* <div className="userInvoices">
         {userInvoices &&
           userInvoices.map((item, index) => (
             <InvoiceItem key={index} item={item} />
           ))}
-        {/* {userInvoices && (
-            userInvoices.map((item) => (
-                <p>{item}</p>
-            ))
-        )} */}
-      </div>
+
+      </div> */}
     </div>
   );
 };

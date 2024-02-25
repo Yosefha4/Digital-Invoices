@@ -1,28 +1,47 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 
-const InvoiceItem = ({ item }) => {
+const InvoiceItem = () => {
+
+  let { state } = useLocation();
+
+  useEffect(() =>{
+    console.log("state: ", state)
+  },[])
+
   return (
+    <div className="invoice-container">
     <div className="invoice-item">
+      <div className="header">
+        <h2>Digital Invoice</h2>
+      </div>
+
+      <div className="invoice-details">
+  
       <p>
-        <strong>Invoice: </strong>
-        <span>#{item.invoice_number}</span>{" "}
+        <strong>Invoice Number: </strong>
+        <span>#{ state.item.invoice_number}</span>{" "}
       </p>
       <p>
-        <strong>Invoice ID:</strong> <span> {item.invoice_id}</span>
+        <strong>Invoice ID:</strong> <span> { state.item.invoice_id}</span>
       </p>
       <p>
-        <strong>Invoice Date:</strong> <span>{item.invoice_date}</span>
+        <strong>Invoice Date:</strong> <span>{ state.item.invoice_date}</span>
       </p>
       <p>
-        <strong>Total Amount:</strong> <span style={{backgroundColor:'greenyellow'}}>{item.total_amount}</span>{" "}
+        <strong>Total Amount:</strong> <span style={{backgroundColor:'white'}}>{  state.item.total_amount}</span>{" "}
       </p>
       <p>
-        <strong>Created At:</strong> <span>{item.created_at}</span>
+        <strong>Created At:</strong> <span>{   state.item.created_at}</span>
       </p>
-      <p>
+      {/* <p>
         <strong>User ID:</strong> <span>{item.user_id}</span>{" "}
-      </p>
+      </p> */}
       <button className="btn">Print</button>
+      </div>
+
+    </div>
     </div>
   );
 };

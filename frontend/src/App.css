@@ -5,6 +5,7 @@
 
 .App {
   text-align: center;
+  max-width: 1400px;
 }
 
 header{
@@ -52,6 +53,10 @@ nav{
 .homepage{
   /* height: 1250px; */
 margin-top: 24px;
+}
+.userInvoices .table{
+  max-width: 1100px;
+  width: 100vw;
 }
 
 table {
@@ -119,13 +124,17 @@ tfoot td {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  background-color: burlywood;
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 8px black;
 }
 .info-item{
   display: flex;
   align-items: center;
   font-size: 16px;
   gap: 3px;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   border-radius: 5px;
   padding: 2px 8px;
 }
@@ -134,48 +143,114 @@ tfoot td {
   font-weight: 500;
 
   text-shadow: 1px 1px 1px white;
+
+  /* border-bottom: 1px solid black; */
+}
+.info-item span{
+  font-weight: bold;
 }
 .userInvoices {
+ 
   display: flex;
   flex-direction: column;
   margin-top: 24px;
   gap: 16px; /* Increased gap for better spacing between items */
-}
 
+}
+.invoice-container{
+  max-width: 650px;
+  margin-top: 12px;
+  padding: 12px;
+  
+}
 .invoice-item {
   width: 100%; /* Ensure full width of the container */
-  border: 2px solid #333;
+  height: 700px;
+  border: 3px solid black;
   border-radius: 8px; /* Add rounded corners */
-  padding: 16px;
+  padding: 0px 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
   text-align: left; /* Align text to the left */
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: whitesmoke;
 }
-.invoice-item:hover{
+
+
+/* .invoice-item:hover{
   background-color: antiquewhite;
+} */
+.invoice-item .header{
+height: 10%;
+border-radius:   0.25px 40px ;
+background-color: burlywood;
+text-align: center;
+padding: 8px ;
+margin-top: 8px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 .invoice-item span{
   background-color: white;
   border-radius: 5px;
   padding: 0 4px;
+  font-weight: bold;
 }
 
 .invoice-item h3 {
   margin-bottom: 8px; /* Add space below the invoice number */
 }
 
-.invoice-item p {
-  margin: 4px 0; /* Add space above and below each paragraph */
+
+
+.invoice-item  .btn{
+  width: 30%;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: burlywood;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 24px;
+  
+  cursor: pointer;
+}
+.invoice-item .btn:hover{
+  background-color:transparent;
+
+
 }
 
-.btn{
-  width: 100%;
-  border-radius: 5px;
-  background-color: #000;
-  color: white;
+.userInvoices td{
   font-weight: bold;
 }
-.btn:hover{
-  background-color: rgb(56, 56, 56);
-  /* color: black; */
+
+.userInvoices .moreBtn{
+  background-color: burlywood;
+  padding: 2px 8px ;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+}
+.userInvoices .moreBtn:hover{
+  background-color: transparent;
+}
+
+.invoice-details{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-evenly;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.invoice-details p{
+  border: 3px solid black;
+  padding: 12px;
+  border-radius: 5px;
+  margin: 4px 0; /* Add space above and below each paragraph */
+
+  background-color: burlywood;
 }

@@ -7,7 +7,7 @@ const Homepage = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5002/invoices");
+      const res = await axios.get("http://localhost:5002/api/users");
       //   setUsers()
       console.log("the axios result is: ", res.data);
       setUsers(res.data);
