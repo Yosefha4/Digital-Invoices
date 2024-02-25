@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -8,7 +8,7 @@
   max-width: 1400px;
 }
 
-header{
+header {
   /* position: fixed; */
   height: 80px;
   width: 100%;
@@ -17,44 +17,44 @@ header{
   padding: 0 20px;
 }
 
-nav{
-  max-width: 1100px ;
+nav {
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
 }
 
-.nav_logo{
+.nav_logo {
   font-size: 25px;
 }
 
-.nav, .nav_item{
+.nav,
+.nav_item {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: space-between;
 }
-.nav_item{
+.nav_item {
   column-gap: 25px;
   font-size: 20px;
 }
 
 .nav_logo,
 .nav_link,
-.button{
+.button {
   color: #000;
   text-decoration: none;
-
 }
 
-.nav_link:hover{
+.nav_link:hover {
   color: lightcoral;
 }
 
-.homepage{
+.homepage {
   /* height: 1250px; */
-margin-top: 24px;
+  margin-top: 24px;
 }
-.userInvoices .table{
+.userInvoices .table {
   max-width: 1100px;
   width: 100vw;
 }
@@ -100,25 +100,24 @@ tfoot td {
   font-weight: bold;
 }
 
-.container{
+.container {
   display: flex;
-  
+
   align-items: center;
   justify-content: center;
   background-color: antiquewhite;
-  padding:  24px 0px  ;
+  padding: 24px 0px;
   margin-top: 10px;
 }
 
-.userProfile{
+.userProfile {
   margin-top: 24px;
-  max-width: 1100px ;
+  max-width: 1100px;
   display: flex;
   flex-direction: column;
   background-color: lightgrey;
-
 }
-.userInfo{
+.userInfo {
   margin-top: 8px;
   display: flex;
   align-items: center;
@@ -129,7 +128,7 @@ tfoot td {
   border-radius: 5px;
   box-shadow: 1px 2px 8px black;
 }
-.info-item{
+.info-item {
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -138,7 +137,7 @@ tfoot td {
   border-radius: 5px;
   padding: 2px 8px;
 }
-.info-item p{
+.info-item p {
   color: black;
   font-weight: 500;
 
@@ -146,22 +145,19 @@ tfoot td {
 
   /* border-bottom: 1px solid black; */
 }
-.info-item span{
+.info-item span {
   font-weight: bold;
 }
 .userInvoices {
- 
   display: flex;
   flex-direction: column;
   margin-top: 24px;
   gap: 16px; /* Increased gap for better spacing between items */
-
 }
-.invoice-container{
+.invoice-container {
   max-width: 650px;
   margin-top: 12px;
   padding: 12px;
-  
 }
 .invoice-item {
   width: 100%; /* Ensure full width of the container */
@@ -171,25 +167,24 @@ tfoot td {
   padding: 0px 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
   text-align: left; /* Align text to the left */
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   background-color: whitesmoke;
 }
-
 
 /* .invoice-item:hover{
   background-color: antiquewhite;
 } */
-.invoice-item .header{
-height: 10%;
-border-radius:   0.25px 40px ;
-background-color: burlywood;
-text-align: center;
-padding: 8px ;
-margin-top: 8px;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+.invoice-item .header {
+  height: 10%;
+  border-radius: 0.25px 40px;
+  background-color: burlywood;
+  text-align: center;
+  padding: 8px;
+  margin-top: 8px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.invoice-item span{
+.invoice-item span {
   background-color: white;
   border-radius: 5px;
   padding: 0 4px;
@@ -200,9 +195,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin-bottom: 8px; /* Add space below the invoice number */
 }
 
-
-
-.invoice-item  .btn{
+.invoice-item .btn {
   width: 30%;
   padding: 8px;
   border-radius: 5px;
@@ -211,46 +204,159 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 24px;
-  
+
   cursor: pointer;
 }
-.invoice-item .btn:hover{
-  background-color:transparent;
-
-
+.invoice-item .btn:hover {
+  background-color: transparent;
 }
 
-.userInvoices td{
+.userInvoices td {
   font-weight: bold;
 }
 
-.userInvoices .moreBtn{
+.userInvoices .moreBtn {
   background-color: burlywood;
-  padding: 2px 8px ;
+  padding: 2px 8px;
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
   color: black;
   border: 1px solid black;
 }
-.userInvoices .moreBtn:hover{
+.userInvoices .moreBtn:hover {
   background-color: transparent;
 }
 
-.invoice-details{
+.invoice-details {
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: space-evenly;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.invoice-details p{
+.invoice-details p {
   border: 3px solid black;
   padding: 12px;
   border-radius: 5px;
   margin: 4px 0; /* Add space above and below each paragraph */
 
   background-color: burlywood;
+}
+
+/* auth style */
+
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: lightgray;
+}
+
+.auth-container .signup {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 1px 2px 19px black;
+  background-color: white;
+  padding: 40px 30px;
+  width: 550px;
+
+
+  /* background-color: forestgreen; */
+}
+
+.auth-container .signup h2 {
+  margin-bottom: 16px;
+}
+.input-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  position: relative;
+  /* background-color: red; */
+}
+
+.input-item input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.input-item label {
+  width: 100%;
+  text-align: left;
+}
+.input-item i {
+  position: absolute;
+  top:28px;
+  right: 15px;
+}
+.input-item span {
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  color: red;
+  visibility: hidden;
+}
+
+.auth-btns{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-container .signup .btn {
+  padding: 6px 48px;
+font-weight: bold;
+font-size: 16px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.auth-container .signup .btn:hover{
+  background-color: burlywood;
+}
+
+.auth-btns .secondbtn{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.auth-btns .secondbtn:hover{
+  color: blue;
+  background-color: burlywood;
+  border-radius: 2px 40px;
+}
+
+.input-item.success input{
+  border: 2px solid green;
+  /* border-color: green; */
+}
+.input-item.error input{
+  border: 2px solid red;
+
+  /* border-color: red; */
+}
+
+.input-item.error span {
+  visibility: visible;
+}
+
+.input-item .fa-check-circle{
+  color: green;
+  visibility: hidden;
+}
+.input-item .fa-exclamation-circle{
+  color: red;
+  visibility: hidden;
+}
+
+.input-item.error .fa-exclamation-circle{
+  visibility: visible;
+}
+.input-item.success .fa-check-circle{
+  visibility: visible;
 }

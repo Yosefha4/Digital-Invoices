@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import { Route, Routes, useParams } from "react-router-dom";
 import UserProfile from './components/UserProfile';
 import InvoiceItem from './components/InvoiceItem';
+import Auth from './components/Auth';
 
 function App() {
   const {user_id} = useParams();
@@ -15,7 +16,8 @@ function App() {
       </header>
  
     <Routes>
-      <Route path='/' element={   <Homepage />}/>
+      <Route path='/homepage' element={   <Homepage />}/>
+      <Route path='/' element={   <Auth />}/>
       <Route path='/userProfile/:userId' element={   <UserProfile />}/>
       <Route path='/invoice/:invoiceId' element={   <InvoiceItem />}/>
     </Routes>
