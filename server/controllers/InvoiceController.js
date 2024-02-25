@@ -1,5 +1,16 @@
 const pool = require("../db");
 
+exports.getInvoice = async (req, res) => {
+  const invoiceId = req.params.invoiceId;
+
+  try {
+    const invoice = await pool.query("SELECT * FROM invoices WHERE invoice_id = $1",[invoiceId]);
+    res.status(201).send(invoice.rows);
+    // console.log("Invoices get method !!!");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 exports.getAllInvoices = async (req, res) => {
   try {
     const users = await pool.query("SELECT * FROM invoices;");
