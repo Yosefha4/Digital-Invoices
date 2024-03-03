@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 const Homepage = () => {
   const [users, setUsers] = useState([]);
+  const [userToken,setUserToken] = useState(false);
 
   const fetchUsers = async () => {
     try {
       const res = await axios.get("http://localhost:5002/api/users");
       //   setUsers()
-      console.log("the axios result is: ", res.data);
+      // console.log("the axios result is: ", res.data);
       setUsers(res.data);
       //   res.data.forEach(item =>{
       //     setUsers([...users,item.user_name]);
@@ -22,6 +23,14 @@ const Homepage = () => {
 
   useEffect(() => {
     fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    const tkn = sessionStorage.getItem("token");
+    if(!tkn){
+      setUserToken(false);
+    }
+    setUserToken(true)
   }, []);
   return (
     <section className="homepage">

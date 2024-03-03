@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Signup from "./Signup";
+import Login from "./Login";
 
 const Auth = () => {
-  // const [authMode,setAuthMode] = useState(false);
+  const [authMode,setAuthMode] = useState(false);
 
   return (
     <div className="auth-container">
-      <Signup />
+   {authMode ?   <Signup /> : <Login />}
+      <button type='button' className='secondbtn' onClick={() => setAuthMode(!authMode)} >Alrady have an account? Login </button>
     </div>
   );
 };

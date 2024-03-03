@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InputItem from "./InputItem";
 
+
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setUserEmail] = useState("");
@@ -9,22 +10,22 @@ const Signup = () => {
   const [password, setUserPassword] = useState("");
 
   const [errorInputMsg, setErrorInputMsg] = useState({
-    userName: false,
-    userEmail: false,
-    userAddress: false,
-    userPassword: false,
+    userName: true,
+    userEmail: true,
+    userAddress: true,
+    userPassword: true,
   });
 
   //   const [errorFlag,setErrorFlag] = useState(0);
 
-  useEffect(() => {
-    validateInputs();
-  },[username,email,userAdd,password])
+  // useEffect(() => {
+  //   validateInputs();
+  // },[username,email,userAdd,password])
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    checkInputs();
+    checkInputs()
 
     // alert("SUBMIT!" + username + " " + email + " " + password );
   };
@@ -53,11 +54,12 @@ const Signup = () => {
         userPassword: validatePassword(),
         userAddress: userAdd.length > 5
       }));
-     
+        return false;
     } else {
       // Update errorInputMsg state based on validation results
       console.log("ALL VALID")
       alert("ALL VALID")
+      return true;
     }
   };
 
@@ -122,6 +124,7 @@ const Signup = () => {
         <button type="submit" className="btn" onClick={handleSubmit}>
           SignUp
         </button>
+        {/* <button type='button' className='secondbtn' >Alrady have an account? Login </button> */}
         {/* <button type='button' className='secondbtn' onClick={() => setAuthMode(!authMode)}>Alrady have an account? Login </button> */}
       </div>
     </form>
