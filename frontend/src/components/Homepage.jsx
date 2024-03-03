@@ -31,6 +31,7 @@ const Homepage = () => {
       setUserToken(false);
     }
     setUserToken(true)
+    // console.log(tkn)
   }, []);
   return (
     <section className="homepage">
