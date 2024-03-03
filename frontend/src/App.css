@@ -17,26 +17,27 @@ header {
   padding: 0 20px;
 }
 
-nav {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
 .nav_logo {
-  font-size: 25px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.nav,
+.nav_items {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .nav_item {
   display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav_item {
-  column-gap: 25px;
-  font-size: 20px;
+  flex-direction: column;
 }
 
 .nav_logo,
@@ -360,4 +361,121 @@ font-size: 16px;
 }
 .input-item.success .fa-check-circle{
   visibility: visible;
+}
+
+/* ------------------- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  backdrop-filter: blur(10px); /* Blur effect for modern browsers */
+  z-index: 100;
+}
+
+.openNavBar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white; /* Background color of the navigation bar */
+  padding: 20px 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Drop shadow for the navigation bar */
+
+  z-index: 999;
+}
+
+/* Your additional styling for navigation links, etc. */
+.openNavBar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.openNavBar ul li {
+  margin-bottom: 10px;
+}
+
+.openNavBar ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.openNavBar ul li a:hover {
+  color: blue;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 580px) {
+  .userInfo{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+/* Responsive Styling */
+
+@media screen and (min-width: 768px) {
+  .menu-toggle {
+      display: none;
+  }
+
+  .menu-icon {
+      display: none;
+  }
+
+  .nav_items {
+      flex-direction: row;
+  }
+
+  .nav_item {
+      flex-direction: row;
+      margin-left: 20px;
+  }
+
+  .nav_link {
+      margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav_items {
+      display: none;
+  }
+
+  .menu-icon {
+      cursor: pointer;
+      font-size: 24px;
+  }
+
+  .menu-toggle:checked ~ .nav_items {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background-color: #fff;
+      width: 100%;
+      z-index: 100;
+  }
+
+  .nav_item {
+      margin: 10px 0;
+  }
+
+  .nav_link {
+      margin: 5px 0;
+  }
 }
