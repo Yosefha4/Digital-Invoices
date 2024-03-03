@@ -320,19 +320,20 @@ font-size: 16px;
   background-color: burlywood;
 }
 
-.auth-btns .secondbtn{
+.secondbtn{
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
-.auth-btns .secondbtn:hover{
+.secondbtn:hover{
   color: blue;
   background-color: burlywood;
   border-radius: 2px 40px;
 }
 
 .input-item.success input{
-  border: 2px solid green;
+  border: 2px solid gray;
   /* border-color: green; */
 }
 .input-item.error input{
