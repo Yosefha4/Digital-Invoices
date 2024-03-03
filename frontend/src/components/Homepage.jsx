@@ -35,10 +35,16 @@ const Homepage = () => {
   }, []);
   return (
     <section className="homepage">
-      <h1>HomePage</h1>
+      {/* <h1>Home Page</h1> */}
 
       <div className="container">
+
+        <div className="hero">
+          <h2>Get Your Digital Invoices </h2>
+        </div>
+        
         <table className="table">
+         
           <caption>Users Table 2024</caption>
           <thead>
             <tr>
@@ -64,13 +70,10 @@ const Homepage = () => {
           </tbody>
         </table>
       </div>
+      <div className="container">
+        <h2>2323</h2>
+      </div>
 
-      {/* {users &&
-        users.map((user) => (
-          <p>
-            {user.user_name} : {user.user_id}
-          </p>
-        ))} */}
     </section>
   );
 };

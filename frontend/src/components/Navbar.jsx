@@ -21,9 +21,9 @@ const Navbar = () => {
         <div className="menu-icon">&#9776;</div>
       </div>
       {menuOpen && (
-        <div class="overlay">
+        <div className="overlay">
           <div className="openNavBar">
-          <div class="closeButton" onClick={toggleMenu}>X</div>
+          <div className="closeButton" onClick={toggleMenu}>X</div>
 
             <ul>
               <li className="nav_item">

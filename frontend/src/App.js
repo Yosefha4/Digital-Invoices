@@ -1,7 +1,7 @@
 import "./App.css";
 import Homepage from "./components/Homepage";
 import Navbar from "./components/Navbar";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 import InvoiceItem from "./components/InvoiceItem";
 import Auth from "./components/Auth";
@@ -31,10 +31,10 @@ function App() {
         <Navbar />
       </header>
 
-      {userToken ? (
+      {userToken  ? (
         <Routes>
-          <Route path="/homepage" element={<Homepage />} />
-          <Route path="/" element={<Auth />} />
+          <Route path="/" element={<Homepage />} />
+          {/* <Route path="/" element={<Auth />} /> */}
           <Route path="/userProfile/:userId" element={<UserProfile />} />
           <Route path="/invoice/:invoiceId" element={<InvoiceItem />} />
         </Routes>
@@ -43,13 +43,8 @@ function App() {
           <Route path="/" element={<Auth />} />
         </Routes>
       )}
-      {/* <Routes>
-      <Route path='/homepage' element={   <Homepage />}/>
-      <Route path='/' element={   <Auth />}/>
-      <Route path='/userProfile/:userId' element={   <UserProfile />}/>
-      <Route path='/invoice/:invoiceId' element={   <InvoiceItem />}/>
-    </Routes> */}
-      {/* <h1>Welcome To Digital-Invoice!</h1> */}
+       {/* Redirect unauthenticated users to login */}
+       {!userToken && <Navigate to="/" />}
     </div>
   );
 }

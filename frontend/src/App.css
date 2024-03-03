@@ -1,6 +1,7 @@
 * {
   margin: 0 auto;
   box-sizing: border-box;
+
 }
 
 .App {
@@ -12,9 +13,11 @@ header {
   /* position: fixed; */
   height: 80px;
   width: 100%;
-  background-color: lightgray;
+  background-color: lightblue;
   z-index: 100;
   padding: 0 20px;
+  box-shadow: 2px 1px 7px black;
+  border-radius: 5px;
 }
 
 .nav {
@@ -106,9 +109,33 @@ tfoot td {
 
   align-items: center;
   justify-content: center;
-  background-color: antiquewhite;
+  background-color: lightblue;
   padding: 24px 0px;
   margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 1px 7px black;
+
+}
+.container .hero {
+background-color: white;
+border-radius: 40%;
+padding: 20px;
+box-shadow: 2px 1px 7px black;
+font-family: 'Courier New', Courier, monospace;
+}
+.container .hero h2 {
+  color: navy;
+  text-shadow: 2px 2px 7px blue;
+
+}
+.container table{
+  box-shadow: 2px 1px 7px black;
+
+}
+.container table tr:hover{
+  background-color:lightgoldenrodyellow ;
+  font-weight: bold;
+
 }
 
 .userProfile {
@@ -116,7 +143,7 @@ tfoot td {
   max-width: 1100px;
   display: flex;
   flex-direction: column;
-  background-color: lightgrey;
+  background-color: lightblue;
 }
 .userInfo {
   margin-top: 8px;
@@ -124,7 +151,7 @@ tfoot td {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  background-color: burlywood;
+  background-color: white;
   padding: 8px;
   border-radius: 5px;
   box-shadow: 1px 2px 8px black;
@@ -170,7 +197,7 @@ tfoot td {
   text-align: left; /* Align text to the left */
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  background-color: whitesmoke;
+  background-color: lightblue;
 }
 
 /* .invoice-item:hover{
@@ -179,11 +206,50 @@ tfoot td {
 .invoice-item .header {
   height: 10%;
   border-radius: 0.25px 40px;
-  background-color: burlywood;
+  /* background-color: white; */
   text-align: center;
   padding: 8px;
   margin-top: 8px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+
+}
+.invoice-item .header .logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  /* background-color: white; */
+  padding: 8px;
+  border-radius: 10% ;
+  box-shadow: 1px 2px 4px black;
+  /* border: 1px solid navy; */
+}
+.invoice-item .header .logo{
+  color: navy;
+}
+.invoice-item .header h2{
+  text-shadow: 1px 5px 9px whitesmoke;
+
+}
+
+.invoice-item .dg-date{
+  display: flex;
+  padding-top: 12px;
+  /* background-color: white; */
+  border-top: 1px solid black;
+  width: 100%;
+}
+.invoice-item .dg-date .user-det {
+
+}
+.invoice-item .dg-date .user-det h5 {
+  color: rgb(110, 110, 110);
+  font-weight: 300;
+}
+.invoice-item .dg-date .user-det .name{
+font-weight: bold;
 }
 .invoice-item span {
   background-color: white;
@@ -200,7 +266,7 @@ tfoot td {
   width: 30%;
   padding: 8px;
   border-radius: 5px;
-  background-color: burlywood;
+  background-color: white;
   color: black;
   font-weight: bold;
   font-size: 16px;
@@ -217,7 +283,7 @@ tfoot td {
 }
 
 .userInvoices .moreBtn {
-  background-color: burlywood;
+  background-color: lightblue;
   padding: 2px 8px;
   border-radius: 8px;
   cursor: pointer;
@@ -243,7 +309,7 @@ tfoot td {
   border-radius: 5px;
   margin: 4px 0; /* Add space above and below each paragraph */
 
-  background-color: burlywood;
+  background-color: white;
 }
 
 /* auth style */
@@ -254,7 +320,7 @@ tfoot td {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: lightgray;
+  background-color: lightblue;
 }
 
 .auth-container .signup {
@@ -477,5 +543,19 @@ font-size: 16px;
 
   .nav_link {
       margin: 5px 0;
+  }
+
+  .container{
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+
+  .container .hero {
+    line-height: 1.2; /* Adjust line height */
+    margin: 10px 20px;
+
   }
 }
