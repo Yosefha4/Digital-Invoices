@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import UsersData from "./UsersData";
 
 const Homepage = () => {
   const [users, setUsers] = useState([]);
@@ -37,7 +38,7 @@ const Homepage = () => {
     <section className="homepage">
       {/* <h1>Home Page</h1> */}
 
-      <div className="container">
+      <div className="container con2">
 
         <div className="hero">
           <h2>Get Your Digital Invoices </h2>
@@ -71,7 +72,8 @@ const Homepage = () => {
         </table>
       </div>
       <div className="container">
-        <h2>2323</h2>
+        {/* <h2>2323</h2> */}
+        <UsersData />
       </div>
 
     </section>
