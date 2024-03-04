@@ -125,7 +125,7 @@ const UsersData = () => {
         <h1 >Total Invoices by Month</h1>
         {invoicesData && <Pie data={dataPie} style={{marginTop:20}} />}
       </div>
-      <div style={{ width: "100%",height:'100%',flex:3 }}>
+      <div className="barchart">
         <h1>Total Invoices by Month</h1>
         {invoicesData && <Bar data={barData} style={{width:'70%'}} options={barOptions} />}
       </div>

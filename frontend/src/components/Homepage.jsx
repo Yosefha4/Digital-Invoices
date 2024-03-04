@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import UsersData from "./UsersData";
+import Footer from "./Footer";
 
 const Homepage = () => {
   const [users, setUsers] = useState([]);
-  const [userToken,setUserToken] = useState(false);
+  const [userToken, setUserToken] = useState(false);
 
   const fetchUsers = async () => {
     try {
@@ -28,10 +29,10 @@ const Homepage = () => {
 
   useEffect(() => {
     const tkn = sessionStorage.getItem("token");
-    if(!tkn){
+    if (!tkn) {
       setUserToken(false);
     }
-    setUserToken(true)
+    setUserToken(true);
     // console.log(tkn)
   }, []);
   return (
@@ -39,13 +40,11 @@ const Homepage = () => {
       {/* <h1>Home Page</h1> */}
 
       <div className="container con2">
-
         <div className="hero">
           <h2>Get Your Digital Invoices </h2>
         </div>
-        
+
         <table className="table">
-         
           <caption>Users Table 2024</caption>
           <thead>
             <tr>
@@ -61,7 +60,14 @@ const Homepage = () => {
             {users.map((item, index) => (
               <tr key={index}>
                 <td>
-                  <Link to={`/userProfile/${item.user_id}`} style={{textDecoration:'none',listStyle:'none',listStyleType:"none"}}>
+                  <Link
+                    to={`/userProfile/${item.user_id}`}
+                    style={{
+                      textDecoration: "none",
+                      listStyle: "none",
+                      listStyleType: "none",
+                    }}
+                  >
                     {item.user_name}
                   </Link>
                 </td>
@@ -76,6 +82,7 @@ const Homepage = () => {
         <UsersData />
       </div>
 
+      <Footer />
     </section>
   );
 };
