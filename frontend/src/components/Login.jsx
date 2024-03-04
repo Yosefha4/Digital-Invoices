@@ -52,7 +52,7 @@ const Login = () => {
             // Successful login, handle token or any other action
             const token = response.data.token;
             sessionStorage.setItem("token",token);
-            window.location.href = '/homepage';
+            window.location.href = '/';
             // Do something with the token
           })
           .catch((error) => {

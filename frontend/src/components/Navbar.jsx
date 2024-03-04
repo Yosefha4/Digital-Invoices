@@ -8,6 +8,20 @@ const Navbar = () => {
     console.log(menuOpen);
   };
 
+  const userToken = sessionStorage.getItem("token");
+
+  // console.log("user token: " + userToken);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    if(sessionStorage.getItem("token")){
+      sessionStorage.removeItem("token");
+      window.location.href = '/';
+    }
+
+  }
+
   return (
     <nav className="nav">
       <a href="/" className="nav_logo">
@@ -27,7 +41,7 @@ const Navbar = () => {
 
             <ul>
               <li className="nav_item">
-                <a href="/homepage" className="nav_link">
+                <a href="/" className="nav_link">
                   Home
                 </a>
                 <a href="/" className="nav_link">
@@ -39,7 +53,11 @@ const Navbar = () => {
                 <a href="/" className="nav_link">
                   Contact
                 </a>
+               {userToken && <button className="btn" onClick={handleLogout}>Logout</button>}
+
               </li>
+            
+
             </ul>
           </div>
         </div>
@@ -47,7 +65,7 @@ const Navbar = () => {
 
       <ul className={`nav_items ${menuOpen ? "open" : ""}`}>
         <li className="nav_item">
-          <a href="/homepage" className="nav_link">
+          <a href="/" className="nav_link">
             Home
           </a>
           <a href="/" className="nav_link">
@@ -59,6 +77,7 @@ const Navbar = () => {
           <a href="/" className="nav_link">
             Contact
           </a>
+        {userToken &&   <button className="nav-btn" onClick={handleLogout}>Logout</button>}
         </li>
       </ul>
     </nav>
