@@ -12,7 +12,7 @@ import {
   Title,
 } from "chart.js";
 
-import { Pie,Bar } from "react-chartjs-2";
+import { Pie, Bar } from "react-chartjs-2";
 
 ChartJS.register(
   ArcElement,
@@ -24,23 +24,64 @@ ChartJS.register(
   Title
 );
 
-
 const UsersData = () => {
   const [invoicesData, setInvoicesData] = useState([]);
+  const [invoiceCounts, setInvoiceCounts] = useState([]);
+  const [totalAmounts, setTotalAmounts] = useState([]);
+
+
 
   useEffect(() => {
     fetchInvoicesData();
+
+    
   }, []);
+
+  useEffect(() => {
+
+    const counts  = calcInvoicesPerMonth(invoicesData);
+    const amounts = calculateTotalAmounts(invoicesData);
+
+    setInvoiceCounts(counts);
+    setTotalAmounts(amounts)
+    console.log("amounts : " + amounts)
+
+    // console.log(invoiceCounts);
+  }, [invoicesData]);
+
+
 
   const fetchInvoicesData = async () => {
     try {
       const res = await axios.get("http://localhost:5002/api/invoices");
       setInvoicesData(res.data);
-      console.log("invoicesData : " + res.data);
+      console.log("invoicesData : " + res.data[3].total_amount);
     } catch (error) {
       console.log("Error fetch invoices !");
     }
   };
+
+  const calcInvoicesPerMonth = (data) => {
+    const counts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
+    
+    data.forEach((item) => {
+      const month = parseInt(item.invoice_date.split("-")[1]) - 1; // Adjust month to 0-based index
+      counts[month]++;
+    });
+    return counts;
+  };
+
+  const calculateTotalAmounts = (data) => {
+    const totalAmounts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
+  
+    data.forEach(item => {
+      const monthIndex = parseInt(item.invoice_date.split('-')[1]) - 1; // Adjust month to 0-based index
+      const totalAmount = parseFloat(item.total_amount);
+      totalAmounts[monthIndex] += totalAmount;
+    });
+  
+    return totalAmounts;
+  }
 
   const dataPie = {
     labels: [
@@ -60,7 +101,7 @@ const UsersData = () => {
     datasets: [
       {
         label: "Total Amount by Month",
-        data: [12, 19, 3, 5, 2, 3, 1, 10, 9, 40, 20, 14],
+        data: invoiceCounts ? invoiceCounts :  [12, 19, 3, 5, 2, 3, 1, 10, 9, 40, 20, 14],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)", // Red
           "rgba(54, 162, 235, 0.2)", // Blue
@@ -98,22 +139,35 @@ const UsersData = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
       },
       title: {
         display: true,
-        text: 'Amounts Bar Chart',
+        text: "Amounts Bar Chart",
       },
     },
   };
   const barData = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
     datasets: [
       {
-        label: 'Total Amount of Invoices per Month',
-        data: [1000, 1200, 800, 1500, 2000, 1800, 1600, 1900, 2200, 2500, 2300, 2100], // Replace with your total amount data
-        backgroundColor: 'lightblue', // Blue
-        borderColor: 'rgba(54, 162, 235, 1)',
+        label: "Total Amount of Invoices per Month",
+        data: totalAmounts ? totalAmounts : [1000, 1200, 800, 1500, 2000, 1800, 1600, 1900, 2200, 2500, 2300, 2100,], // Replace with your total amount data
+        backgroundColor: "lightblue", // Blue
+        borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
       },
     ],
@@ -121,13 +175,24 @@ const UsersData = () => {
 
   return (
     <div className="user-data-cont">
-      <div style={{width: "100%",height:'100%', display:'flex',flexDirection:'column',justifyContent:'center',flex:1}}>
-        <h1 >Total Invoices by Month</h1>
-        {invoicesData && <Pie data={dataPie} style={{marginTop:20}} />}
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          flex: 1,
+        }}
+      >
+        <h1>Total Invoices by Month</h1>
+        {invoicesData && <Pie data={dataPie} style={{ marginTop: 20 }} />}
       </div>
       <div className="barchart">
         <h1>Total Invoices by Month</h1>
-        {invoicesData && <Bar data={barData} style={{width:'70%'}} options={barOptions} />}
+        {invoicesData && (
+          <Bar data={barData} style={{ width: "70%" }} options={barOptions} />
+        )}
       </div>
     </div>
   );
