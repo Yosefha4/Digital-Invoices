@@ -28,6 +28,12 @@ const UsersData = () => {
   const [invoicesData, setInvoicesData] = useState([]);
   const [invoiceCounts, setInvoiceCounts] = useState([]);
   const [totalAmounts, setTotalAmounts] = useState([]);
+  const [selectedYear, setSelectedYear] = useState(2023);
+
+
+  const years = Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i);
+
+
 
 
 
@@ -39,7 +45,9 @@ const UsersData = () => {
 
   useEffect(() => {
 
-    const counts  = calcInvoicesPerMonth(invoicesData);
+    // const counts  = calcInvoicesPerMonth(invoicesData);
+    const counts = calculateInvoiceData(invoicesData, selectedYear);
+
     const amounts = calculateTotalAmounts(invoicesData);
 
     setInvoiceCounts(counts);
@@ -47,8 +55,9 @@ const UsersData = () => {
     console.log("amounts : " + amounts)
 
     // console.log(invoiceCounts);
-  }, [invoicesData]);
+  }, [invoicesData,selectedYear]);
 
+  // console.log(new Date().getFullYear())
 
 
   const fetchInvoicesData = async () => {
@@ -70,6 +79,21 @@ const UsersData = () => {
     });
     return counts;
   };
+
+  function calculateInvoiceData(data, year) {
+    const invoiceCounts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
+  
+    data.forEach(item => {
+      const invoiceYear = parseInt(item.invoice_date.split('-')[0]);
+      if (invoiceYear === year) {
+        const monthIndex = parseInt(item.invoice_date.split('-')[1]) - 1; // Adjust month to 0-based index
+        invoiceCounts[monthIndex]++;
+      }
+    });
+  
+    return invoiceCounts;
+  }
+
 
   const calculateTotalAmounts = (data) => {
     const totalAmounts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
@@ -185,7 +209,18 @@ const UsersData = () => {
           flex: 1,
         }}
       >
+        <div className="sBox">
         <h1>Total Invoices by Month</h1>
+
+<select id="yearSelect" value={selectedYear} onChange={e => setSelectedYear(parseInt(e.target.value))}>
+{years.map((year, index) => (
+  <option key={index} value={year}>
+    {year}
+  </option>
+))}
+</select>
+        </div>
+              
         {invoicesData && <Pie data={dataPie} style={{ marginTop: 20 }} />}
       </div>
       <div className="barchart">
