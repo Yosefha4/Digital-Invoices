@@ -700,6 +700,16 @@ text-shadow:  1px 4px 7px rgb(11, 191, 251);
     justify-content: center;
     align-items: center;
   }
+  .footer-cont{
+    flex-direction: column;
+  }
+  .footer-cont .left{
+    display: none;
+  }
+  .footer-cont .middle{
+    width: 100%;
+  }
+
 }
 @media only screen and (max-width: 1024px) {
   .user-data-cont {
@@ -708,14 +718,11 @@ text-shadow:  1px 4px 7px rgb(11, 191, 251);
     gap: 20px;
     align-items: center;
   }
-}
-@media only screen and (max-width: 900px) {
-  .barchart {
-    /* padding: 12px 0; */
-  }
-  .user-data-cont {
+  .footer-cont .right{
+    visibility: hidden;
   }
 }
+
 
 /* Responsive Styling */
 

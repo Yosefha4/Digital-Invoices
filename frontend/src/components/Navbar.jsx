@@ -24,9 +24,13 @@ const Navbar = () => {
 
   return (
     <nav className="nav">
-      <a href="/" className="nav_logo">
+      {/* <a href="/" className="nav_logo">
         Logo
-      </a>
+      </a> */}
+
+      <i className="fa-solid fa-file-invoice" style={{ display: "flex",gap:'10px' }}>
+            Digital Invoice
+          </i>
 
       <div
         className={`menu-toggle ${menuOpen ? "menu-open" : ""}`}
