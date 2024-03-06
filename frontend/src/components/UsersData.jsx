@@ -45,14 +45,14 @@ const UsersData = () => {
 
     setInvoiceCounts(counts);
     setTotalAmounts(amounts);
-    console.log("amounts : " + amounts);
+    // console.log("amounts : " + amounts);
   }, [invoicesData, selectedYear]);
 
   const fetchInvoicesData = async () => {
     try {
       const res = await axios.get("http://localhost:5002/api/invoices");
       setInvoicesData(res.data);
-      console.log("invoicesData : " + res.data[3].total_amount);
+      // console.log("invoicesData : " + res.data[3].total_amount);
     } catch (error) {
       console.log("Error fetch invoices !");
     }

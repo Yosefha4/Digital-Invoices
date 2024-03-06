@@ -7,12 +7,11 @@ const InvoiceItem = () => {
   const [currentDate, setCurrentDate] = useState(new Date())
 
 
-  let { state } = useLocation();
+  const { state } = useLocation();
+  const { item, username,address } = state;
 
-  useEffect(() =>{
-    console.log("state: ", state)
-  },[])
 
+// console.log(user_name)
   
 
   return (
@@ -31,12 +30,12 @@ const InvoiceItem = () => {
 <div className="dg-date">
   <div className="user-det">
     <h5>BILLED TO</h5>
-    <h4 className="name">Yosef Haim</h4>
+    <h4 className="name">{username}</h4>
     
   </div>
   <div className="user-det">
     <h5>STREET ADDRESS</h5>
-    <h4 className="name">Tel Aviv ,12 ST</h4>
+    <h4 className="name">{address}</h4>
     
   </div>
   <div className="user-det">
@@ -50,19 +49,19 @@ const InvoiceItem = () => {
   
       <p>
         <strong>Invoice Number: </strong>
-        <span>#{ state.item.invoice_number}</span>{" "}
+        <span>#{ item.invoice_number}</span>{" "}
       </p>
       <p>
-        <strong>Invoice ID:</strong> <span> { state.item.invoice_id}</span>
+        <strong>Invoice ID:</strong> <span> { item.invoice_id}</span>
       </p>
       <p>
-        <strong>Invoice Date:</strong> <span>{ state.item.invoice_date}</span>
+        <strong>Invoice Date:</strong> <span>{ item.invoice_date}</span>
       </p>
       <p>
-        <strong>Total Amount:</strong> <span style={{backgroundColor:'white'}}>{  state.item.total_amount}</span>{" "}
+        <strong>Total Amount:</strong> <span style={{backgroundColor:'white'}}>{  item.total_amount}</span>{" "}
       </p>
       <p>
-        <strong>Created At:</strong> <span>{   state.item.created_at.split("T")[0]}</span>
+        <strong>Created At:</strong> <span>{   item.created_at.split("T")[0]}</span>
       </p>
       {/* <p>
         <strong>User ID:</strong> <span>{item.user_id}</span>{" "}

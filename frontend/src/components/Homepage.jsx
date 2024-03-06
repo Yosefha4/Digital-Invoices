@@ -23,8 +23,22 @@ const Homepage = () => {
     }
   };
 
+  const verifyToken = async() => {
+
+    try {
+
+      const res = await axios.get("http://localhost:5002/api/users/checkAuth");
+
+      console.log("Verify Token is : "  + res.data)
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchUsers();
+    // verifyToken();
   }, []);
 
   useEffect(() => {

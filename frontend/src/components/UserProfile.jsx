@@ -27,7 +27,7 @@ const UserProfile = () => {
   const fetchUserInvoices = async () => {
     try {
       const res = await axios.get(`http://localhost:5002/api/invoices/${userId}`);
-      console.log(res.data);
+      // console.log(res.data);
       setUserInvoices(res.data);
     } catch (error) {
       console.log(error.message);
@@ -74,7 +74,7 @@ const UserProfile = () => {
     <td>
     {/* <Link className="moreBtn" to={{ pathname: `/invoice/${item.invoice_id}`, state: { item } }}>More</Link> */}
 
-      <Link className="moreBtn"  to={`/invoice/${item.invoice_id}`} state={{item}}>More</Link>
+      <Link className="moreBtn"  to={`/invoice/${item.invoice_id}`} state={{item,username:userName,address:userAdd}} >More</Link>
       {/* <button className="moreBtn">More</button> */}
     </td>
 
