@@ -30,35 +30,23 @@ const UsersData = () => {
   const [totalAmounts, setTotalAmounts] = useState([]);
   const [selectedYear, setSelectedYear] = useState(2023);
 
-
-  const years = Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i);
-
-
-
-
+  const years = Array.from(
+    { length: 20 },
+    (_, i) => new Date().getFullYear() - i
+  );
 
   useEffect(() => {
     fetchInvoicesData();
-
-    
   }, []);
 
   useEffect(() => {
-
-    // const counts  = calcInvoicesPerMonth(invoicesData);
     const counts = calculateInvoiceData(invoicesData, selectedYear);
-
-    const amounts = calculateTotalAmounts(invoicesData);
+    const amounts = calculateTotalAmountByYear(invoicesData, selectedYear);
 
     setInvoiceCounts(counts);
-    setTotalAmounts(amounts)
-    console.log("amounts : " + amounts)
-
-    // console.log(invoiceCounts);
-  }, [invoicesData,selectedYear]);
-
-  // console.log(new Date().getFullYear())
-
+    setTotalAmounts(amounts);
+    console.log("amounts : " + amounts);
+  }, [invoicesData, selectedYear]);
 
   const fetchInvoicesData = async () => {
     try {
@@ -70,42 +58,34 @@ const UsersData = () => {
     }
   };
 
-  const calcInvoicesPerMonth = (data) => {
-    const counts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
-    
-    data.forEach((item) => {
-      const month = parseInt(item.invoice_date.split("-")[1]) - 1; // Adjust month to 0-based index
-      counts[month]++;
-    });
-    return counts;
-  };
-
   function calculateInvoiceData(data, year) {
     const invoiceCounts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
-  
-    data.forEach(item => {
-      const invoiceYear = parseInt(item.invoice_date.split('-')[0]);
+
+    data.forEach((item) => {
+      const invoiceYear = parseInt(item.invoice_date.split("-")[0]);
       if (invoiceYear === year) {
-        const monthIndex = parseInt(item.invoice_date.split('-')[1]) - 1; // Adjust month to 0-based index
+        const monthIndex = parseInt(item.invoice_date.split("-")[1]) - 1; // Adjust month to 0-based index
         invoiceCounts[monthIndex]++;
       }
     });
-  
+
     return invoiceCounts;
   }
 
-
-  const calculateTotalAmounts = (data) => {
+  const calculateTotalAmountByYear = (data, year) => {
     const totalAmounts = Array(12).fill(0); // Initialize an array with 12 elements, all set to 0
-  
-    data.forEach(item => {
-      const monthIndex = parseInt(item.invoice_date.split('-')[1]) - 1; // Adjust month to 0-based index
-      const totalAmount = parseFloat(item.total_amount);
-      totalAmounts[monthIndex] += totalAmount;
+
+    data.forEach((item) => {
+      const [invoiceYear, month] = item.invoice_date.split("-");
+      if (parseInt(invoiceYear) === year) {
+        const monthIndex = parseInt(month) - 1; // Adjust month to 0-based index
+        const totalAmount = parseFloat(item.total_amount);
+        totalAmounts[monthIndex] += totalAmount;
+      }
     });
-  
+
     return totalAmounts;
-  }
+  };
 
   const dataPie = {
     labels: [
@@ -125,7 +105,9 @@ const UsersData = () => {
     datasets: [
       {
         label: "Total Amount by Month",
-        data: invoiceCounts ? invoiceCounts :  [12, 19, 3, 5, 2, 3, 1, 10, 9, 40, 20, 14],
+        data: invoiceCounts
+          ? invoiceCounts
+          : [12, 19, 3, 5, 2, 3, 1, 10, 9, 40, 20, 14],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)", // Red
           "rgba(54, 162, 235, 0.2)", // Blue
@@ -189,7 +171,12 @@ const UsersData = () => {
     datasets: [
       {
         label: "Total Amount of Invoices per Month",
-        data: totalAmounts ? totalAmounts : [1000, 1200, 800, 1500, 2000, 1800, 1600, 1900, 2200, 2500, 2300, 2100,], // Replace with your total amount data
+        data: totalAmounts
+          ? totalAmounts
+          : [
+              1000, 1200, 800, 1500, 2000, 1800, 1600, 1900, 2200, 2500, 2300,
+              2100,
+            ], // Replace with your total amount data
         backgroundColor: "lightblue", // Blue
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
@@ -210,21 +197,25 @@ const UsersData = () => {
         }}
       >
         <div className="sBox">
-        <h1>Total Invoices by Month</h1>
+          <h1>Total Invoices by Month</h1>
 
-<select id="yearSelect" value={selectedYear} onChange={e => setSelectedYear(parseInt(e.target.value))}>
-{years.map((year, index) => (
-  <option key={index} value={year}>
-    {year}
-  </option>
-))}
-</select>
+          <select
+            id="yearSelect"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+          >
+            {years.map((year, index) => (
+              <option key={index} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
         </div>
-              
+
         {invoicesData && <Pie data={dataPie} style={{ marginTop: 20 }} />}
       </div>
       <div className="barchart">
-        <h1>Total Invoices by Month</h1>
+        <h1>Total Amounts by Month</h1>
         {invoicesData && (
           <Bar data={barData} style={{ width: "70%" }} options={barOptions} />
         )}
