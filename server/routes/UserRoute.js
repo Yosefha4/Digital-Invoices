@@ -10,11 +10,12 @@ router.get('/userDetails/:userId', UserControl.getUserById);
 // auth routes
 router.post("/signup",UserControl.signup)
 router.post("/login",UserControl.login)
+router.get("/checkAuth",UserControl.checkAuth)
 
-router.get('/profile', authenticateToken, (req, res) => {
-    console.log('User:', req.user); // Check if user data is correctly attached to the request
+// router.get('/profile', authenticateToken, (req, res) => {
+//     console.log('User:', req.user); // Check if user data is correctly attached to the request
 
-    res.json(req.user);
-  });
+//     res.json(req.user);
+//   });
 
 module.exports = router;
