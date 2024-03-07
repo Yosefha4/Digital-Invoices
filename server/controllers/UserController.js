@@ -58,8 +58,32 @@ exports.getUserById = async (req,res) => {
       }
   
       const token = jwt.sign({ id: user.id, username: user.username }, 'your_secret_key', { expiresIn: '1h' });
+      res.cookie('token', token, { httpOnly: true });
       res.status(200).json({ token });
+      
     } catch (error) {
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+
+  exports.checkAuth = async (req, res) => {
+    try {
+      // Check if user is authenticated (JWT verification)
+      const token = req.cookies.token;
+      console.log("Req.cookie.token : " + token)
+      if (!token) {
+        return res.status(401).json({ loggedIn: false, message: 'No token provided' });
+      }
+  
+      jwt.verify(token, 'your_secret_key', (err, decoded) => {
+        if (err) {
+          return res.status(401).json({ loggedIn: false, message: 'Invalid token' });
+        }
+        res.status(200).json({ loggedIn: true, user: decoded });
+      });
+  
+    } catch (error) {
+      console.error('Check auth error:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   };
