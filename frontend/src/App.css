@@ -270,7 +270,7 @@ tfoot td {
 }
 .invoice-item {
   width: 100%; /* Ensure full width of the container */
-  height: 700px;
+  height: 100%;
   border: 3px solid black;
   border-radius: 8px; /* Add rounded corners */
   padding: 0px 16px;
@@ -281,6 +281,7 @@ tfoot td {
   background-color: lightblue;
 }
 
+
 /* .invoice-item:hover{
   background-color: antiquewhite;
 } */
@@ -290,7 +291,8 @@ tfoot td {
   /* background-color: white; */
   text-align: center;
   padding: 8px;
-  margin-top: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   display: flex;
   align-items: center;
@@ -398,6 +400,9 @@ tfoot td {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  /* width: 100vw; */
+  border-radius: 5px;
+  margin-top: 8px;
   background-color: lightblue;
 }
 
@@ -693,12 +698,29 @@ text-shadow:  1px 4px 7px rgb(11, 191, 251);
 }
 
 
+.sBox{
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  gap: 10px;
+}
+.sBox select{
+  padding: 2px;
+  border-radius: 5px;
+  
+}
+
 
 @media only screen and (max-width: 580px) {
+
   .userInfo {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  footer{
+    position: static;
+    bottom: 0; 
   }
   .footer-cont{
     flex-direction: column;

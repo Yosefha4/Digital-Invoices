@@ -2,36 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
-import "../App.css"
+import "../App.css";
 
 const InvoiceItem = () => {
-
-  const [currentDate, setCurrentDate] = useState(new Date())
-
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const { state } = useLocation();
-  const { item, username,address } = state;
+  const { item, username, address } = state;
 
+  // console.log(user_name)
 
-// console.log(user_name)
-  
+  const handlePrint = (e) => {
+    e.preventDefault();
 
-const handlePrint = (e) => {
-  e.preventDefault();
+    // window.print()
 
-  // window.print()
+    // window.open()
 
-  // window.open()
+    const windowFeatures = "width=100vw,height=100vh,left=200,top=200"; // Example features
 
-  const windowFeatures = "width=100vw,height=100vh,left=200,top=200"; // Example features
-
-
-  const printWindow = window.open('', '_blank');
-  const currentContainer = document.getElementById("invoice-container").innerHTML;
-  // alert(currentContainer)
- if (printWindow) {
-
-  const htmlContentStart = `
+    const printWindow = window.open("", "_blank");
+    const currentContainer =
+      document.getElementById("invoice-container").innerHTML;
+    // alert(currentContainer)
+    if (printWindow) {
+      const htmlContentStart = `
   <html>
   <head>
       <style>
@@ -51,7 +46,8 @@ const handlePrint = (e) => {
             margin-top: 12px;
             padding: 12px;
             height: 100%;
-         
+            background-color:  #add8e6;
+
           }
           .invoice-item {
             width: 100%; /* Ensure full width of the container */
@@ -63,7 +59,7 @@ const handlePrint = (e) => {
             text-align: left; /* Align text to the left */
             font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
               "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-            background-color: lightblue;
+            background-color: #add8e6;
             overflow:hidden;
           }
           
@@ -78,8 +74,15 @@ const handlePrint = (e) => {
             text-align: center;
             padding: 8px;
             font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+            font-size: 24px;
             display: flex;
             align-items: center;
+            justify-content: center;
+
+
+          }
+          .invoice-item .header .fa-solid fa-file-invoice {
+          font-weight:"bold";
 
           }
           .invoice-item .header .logo {
@@ -94,10 +97,6 @@ const handlePrint = (e) => {
             /* border: 1px solid navy; */
           }
      
-          .invoice-item .header h2 {
-            text-shadow: 1px 5px 9px whitesmoke;
-          }
-          
           .invoice-item .dg-date {
             display: flex;
             justify-content: space-around; 
@@ -194,20 +193,18 @@ const handlePrint = (e) => {
   </head>
   <body>
 `;
-  
-  const htmlContentEnd = `
+
+      const htmlContentEnd = `
   </body>
   </html>
 `;
-  
+
       // Get HTML content of the invoice container
       // const invoiceContent = invoiceContainerRef.current.outerHTML;
 
       // Write the content to the new window
       // printWindow.document.write('<html><head><title>Invoice</title>');
       // printWindow.document.write('<link rel="stylesheet" href="../App.css"/>  </head><body>');
-
-   
 
       printWindow.document.write(htmlContentStart);
       printWindow.document.write(currentContainer);
@@ -218,66 +215,69 @@ const handlePrint = (e) => {
       printWindow.document.close();
       printWindow.print();
     }
-  
-
-}
+  };
 
   return (
     <div className="invoice-container" id="invoice-container">
-    <div className="invoice-item">
-      <div className="header">
-      <h2>Digital Invoice</h2>
-        <div className="logo">
+      <div className="invoice-item">
+        <div className="header">
+          <i
+            className="fa-solid fa-file-invoice"
+            style={{ display: "flex", gap: "10px" }}
+          >
+            Digital Invoice
+          </i>
+
+          {/* <div className="logo">
         <i class="fa-regular fa-file-lines"></i>
         <p>DG Inv</p>
+        </div> */}
         </div>
-      
-   
-      </div>
 
-<div className="dg-date">
-  <div className="user-det">
-    <h5>BILLED TO</h5>
-    <h4 className="name">{username}</h4>
-    
-  </div>
-  <div className="user-det">
-    <h5>STREET ADDRESS</h5>
-    <h4 className="name">{address}</h4>
-    
-  </div>
-  <div className="user-det">
-    <h5>Date</h5>
-    <h4 className="name">{currentDate.toDateString()}</h4>
-    
-  </div>
+        <div className="dg-date">
+          <div className="user-det">
+            <h5>BILLED TO</h5>
+            <h4 className="name">{username}</h4>
+          </div>
+          <div className="user-det">
+            <h5>STREET ADDRESS</h5>
+            <h4 className="name">{address}</h4>
+          </div>
+          <div className="user-det">
+            <h5>Date</h5>
+            <h4 className="name">{currentDate.toDateString()}</h4>
+          </div>
+        </div>
+        <div className="invoice-details">
+          <p>
+            <strong>Invoice Number: </strong>
+            <span>#{item.invoice_number}</span>{" "}
+          </p>
+          <p>
+            <strong>Invoice ID:</strong> <span> {item.invoice_id}</span>
+          </p>
+          <p>
+            <strong>Invoice Date:</strong> <span>{item.invoice_date}</span>
+          </p>
+          <p>
+            <strong>Total Amount:</strong>{" "}
+            <span style={{ backgroundColor: "white" }}>
+              {item.total_amount}
+            </span>{" "}
+          </p>
+          <p>
+            <strong>Created At:</strong>{" "}
+            <span>{item.created_at.split("T")[0]}</span>
+          </p>
 
-</div>
-      <div className="invoice-details">
-  
-      <p>
-        <strong>Invoice Number: </strong>
-        <span>#{ item.invoice_number}</span>{" "}
-      </p>
-      <p>
-        <strong>Invoice ID:</strong> <span> { item.invoice_id}</span>
-      </p>
-      <p>
-        <strong>Invoice Date:</strong> <span>{ item.invoice_date}</span>
-      </p>
-      <p>
-        <strong>Total Amount:</strong> <span style={{backgroundColor:'white'}}>{  item.total_amount}</span>{" "}
-      </p>
-      <p>
-        <strong>Created At:</strong> <span>{   item.created_at.split("T")[0]}</span>
-      </p>
-      {/* <p>
+          {/* <p>
         <strong>User ID:</strong> <span>{item.user_id}</span>{" "}
       </p> */}
-      <button className="btn" onClick={handlePrint}>Print</button>
+          <button className="btn" onClick={handlePrint}>
+            Print
+          </button>
+        </div>
       </div>
-
-    </div>
     </div>
   );
 };
