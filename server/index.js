@@ -13,16 +13,13 @@ app.use(cookieParser());
 
 //Routes
 
-app.use('/api/invoices', require('./routes/InvoiceRoute'));
-app.use('/api/users', require('./routes/UserRoute'));
-
-
-
+app.use("/api/invoices", require("./routes/InvoiceRoute"));
+app.use("/api/users", require("./routes/UserRoute"));
+app.use("/api/subscribe", require("./routes/NewsLetterRoute"));
 
 app.listen(5002, () => {
   console.log("Server listen on port: 5002 !");
 });
-
 
 /*
 -- Extracting the month
