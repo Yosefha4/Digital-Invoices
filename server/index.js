@@ -3,6 +3,9 @@ const cors = require("cors");
 const pool = require("./db");
 const cookieParser = require("cookie-parser");
 
+require('dotenv').config()
+
+
 const app = express();
 
 //Middleware

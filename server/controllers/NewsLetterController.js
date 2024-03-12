@@ -28,6 +28,18 @@ async function sendConfirmationEmail(email) {
   }
 }
 
+exports.getAllEmail = async (req,res) => {
+  try {
+    const subsData = await pool.query(
+      "SELECT * FROM subscriptions;"
+    );
+    res.status(201).send(subsData.rows);
+
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
 exports.subscribe = async (req, res) => {
   try {
     const { user_email } = req.body;
