@@ -2,7 +2,6 @@
 
 /* ------------------- */
 
-
 @mixin transformScale($size: 1) {
   transform: scale($size);
   -ms-transform: scale($size);
@@ -49,7 +48,7 @@ body {
       height: 60px;
       border-radius: 100%;
       display: block;
-      background: linear-gradient(45deg, lightblue, #2b8fbe,lightblue);
+      background: linear-gradient(45deg, lightblue, #2b8fbe, lightblue);
       transition: all 265ms ease-out;
     }
 
@@ -61,7 +60,7 @@ body {
     &:hover i {
       @include transformScale(2.2);
       color: #00b5f5;
-      background: -webkit-linear-gradient(45deg, #00b5f5,  #002a8f);
+      background: -webkit-linear-gradient(45deg, #00b5f5, #002a8f);
       background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 265ms ease-in;
@@ -280,7 +279,6 @@ tfoot td {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   background-color: lightblue;
 }
-
 
 /* .invoice-item:hover{
   background-color: antiquewhite;
@@ -619,7 +617,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .left i {
   padding: 12px;
@@ -630,52 +627,44 @@ footer {
   width: 50%;
   /* background-color: forestgreen; */
   border-left: 1px solid lightblue;
-
-
 }
 
 .footer-cont .right {
   width: 25%;
   display: flex;
-align-items: center;
-flex-direction: column;
-gap: 6px;
-border-left: 1px solid lightblue;
-
-
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  border-left: 1px solid lightblue;
 }
 .right .input-rigth {
   width: 100%;
-
-
 }
-.right h3{
-/* background-color: white; */
-text-shadow:  1px 4px 7px rgb(11, 191, 251);
+.right h3 {
+  /* background-color: white; */
+  text-shadow: 1px 4px 7px rgb(11, 191, 251);
 }
-.right .input-rigth input{
-  padding:  12px 36px;
+.right .input-rigth input {
+  padding: 12px 36px;
   border-radius: 5px;
   border: none;
   margin-right: 8px;
   box-shadow: 1px 1px 4px black;
-
- 
 }
-.right .input-rigth button{
-  padding:  12px;
+.right .input-rigth button {
+  padding: 12px;
   border-radius: 5px;
   border: none;
   box-shadow: 1px 1px 4px black;
   background-color: lightblue;
   font-weight: bold;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
- text-shadow: 1px 2px 9px white;
- cursor: pointer;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  text-shadow: 1px 2px 9px white;
+  cursor: pointer;
 
- &:hover{
-  background-color: lightcyan;
- }
+  &:hover {
+    background-color: lightcyan;
+  }
 }
 
 .footer-cont .right ul {
@@ -697,41 +686,146 @@ text-shadow:  1px 4px 7px rgb(11, 191, 251);
   color: #ffc107; /* Change text color on hover */
 }
 
-
-.sBox{
+.sBox {
   display: flex;
   /* align-items: center; */
   /* justify-content: center; */
   gap: 10px;
 }
-.sBox select{
+.sBox select {
   padding: 2px;
   border-radius: 5px;
-  
 }
 
+/* Subscribe */
+.subs {
+  display: flex;
+  width: 100%;
+  background-color: lightblue;
+  margin-top: 12px;
+}
+.subs .left {
+  width: 60%;
+
+  /* background-color: lightgray; */
+  /* background-color: red; */
+}
+.subs .right {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-right: 12px;
+  /* background-color: green; */
+}
+.subs .table {
+  margin-top: 12px;
+  font-weight: 600;
+  padding: 12px;
+}
+
+.subs .table td {
+  background-color: white;
+  height: 50px;
+  padding: 12px;
+}
+.subs .table thead {
+  box-shadow: 1px 2px 9px black;
+}
+
+.send-email {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  /* border: 3px solid white; */
+  box-shadow: 1px 5px 9px black;
+  border-radius: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  /* background-color: whitesmoke; */
+}
+.send-email .subj {
+  width: 70%;
+  padding: 6px 4px;
+  margin-top: 12px;
+  border-radius: 5px;
+  border: 1px solid black;
+  max-height: 100%;
+}
+
+.send-email .mess {
+  width: 70%;
+  height: 70%;
+  padding: 6px 4px;
+  margin-top: 12px;
+  border-radius: 5px;
+  border: 1px solid black;
+  max-width: 70%;
+  min-width: 70%;
+  max-height: 70%;
+}
+.send-email .btn{
+  margin-top: 12px;
+  margin-bottom: 8px;
+  padding:  8px;
+  width: 70%;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: white;
+} 
+.send-email .btn:hover{
+  background-color: lightblue;
+} 
+
+.options-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  gap: 20px;
+  background-color: lightgray;
+  box-shadow: 1px 2px 9px black;
+  border-radius: 5px;
+  padding: 2px 16px;
+}
+
+.options-bar label {
+  /* margin-right: 10px; */
+}
+.options-bar .emailInput {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+  border-radius: 15px;
+  /* border: 1px solid black; */
+  /* box-shadow: 1px 1px 4px black; */
+  padding: 4px;
+}
 
 @media only screen and (max-width: 580px) {
-
   .userInfo {
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  footer{
+  footer {
     position: static;
-    bottom: 0; 
+    bottom: 0;
   }
-  .footer-cont{
+  .footer-cont {
     flex-direction: column;
   }
-  .footer-cont .left{
+  .footer-cont .left {
     display: none;
   }
-  .footer-cont .middle{
+  .footer-cont .middle {
     width: 100%;
   }
-
 }
 @media only screen and (max-width: 1024px) {
   .user-data-cont {
@@ -740,11 +834,10 @@ text-shadow:  1px 4px 7px rgb(11, 191, 251);
     gap: 20px;
     align-items: center;
   }
-  .footer-cont .right{
+  .footer-cont .right {
     visibility: hidden;
   }
 }
-
 
 /* Responsive Styling */
 

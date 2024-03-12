@@ -5,25 +5,14 @@ import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import UserProfile from "./components/UserProfile";
 import InvoiceItem from "./components/InvoiceItem";
 import Auth from "./components/Auth";
+import Subs from "./components/Subs";
 
 function App() {
   const { user_id } = useParams();
 
-  console.log("User Id: " + user_id)
   const userToken = sessionStorage.getItem("token");
 
-  // console.log("user token: " + userToken);
-
-  // const AuthComponents = () => {
-  //   return (
-  //     <>
-  //       <Route path="/homepage" element={<Homepage />} />
-  //       <Route path="/userProfile/:userId" element={<UserProfile />} />
-  //       <Route path="/invoice/:invoiceId" element={<InvoiceItem />} />
-  //       <Route path="/auth" element={<Auth />} />
-  //     </>
-  //   );
-  // };
+ 
 
   return (
     <div className="App">
@@ -37,6 +26,8 @@ function App() {
           {/* <Route path="/" element={<Auth />} /> */}
           <Route path="/userProfile/:userId" element={<UserProfile />} />
           <Route path="/invoice/:invoiceId" element={<InvoiceItem />} />
+          <Route path="/subscribers" element={<Subs />} />
+
         </Routes>
       ) : (
         <Routes>
