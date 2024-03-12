@@ -51,8 +51,8 @@ const Navbar = () => {
                 <a href="/" className="nav_link">
                   Products
                 </a>
-                <a href="/" className="nav_link">
-                  Services
+                <a href="/subscribers" className="nav_link">
+                   Subscribers
                 </a>
                 <a href="/" className="nav_link">
                   Contact
@@ -75,9 +75,9 @@ const Navbar = () => {
           <a href="/" className="nav_link">
             Products
           </a>
-          <a href="/" className="nav_link">
-            Services
-          </a>
+          <a href="/subscribers" className="nav_link">
+                   Subscribers
+                </a>
           <a href="/" className="nav_link">
             Contact
           </a>

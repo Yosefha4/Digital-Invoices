@@ -11,13 +11,9 @@ const Homepage = () => {
   const fetchUsers = async () => {
     try {
       const res = await axios.get("http://localhost:5002/api/users");
-      //   setUsers()
-      // console.log("the axios result is: ", res.data);
+
       setUsers(res.data);
-      //   res.data.forEach(item =>{
-      //     setUsers([...users,item.user_name]);
-      //      console.log(item.user_name);
-      //     });
+
     } catch (error) {
       console.log(error.message);
     }
