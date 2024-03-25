@@ -10,6 +10,27 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Function to send email to subscribers
+const sendEmailToSubs = async (subscribers, emailSubject, emailContent) => {
+  try {
+    for (const subscriber of subscribers) {
+      // Email content
+      const mailOptions = {
+        from: "yossonline2u@gmail.com",
+        to: subscriber,
+        subject: emailSubject,
+        text: emailContent,
+      };
+
+      // Send email
+      await transporter.sendMail(mailOptions);
+      console.log(`Custom email sent successfully to ${subscriber}`);
+    }
+  } catch (error) {
+    console.error("Error sending custom email to subscribers:", error);
+  }
+};
+
 // Function to send confirmation email
 async function sendConfirmationEmail(email) {
   try {
@@ -28,17 +49,28 @@ async function sendConfirmationEmail(email) {
   }
 }
 
-exports.getAllEmail = async (req,res) => {
+exports.SendEmailsToUsers = async (req, res) => {
   try {
-    const subsData = await pool.query(
-      "SELECT * FROM subscriptions;"
-    );
-    res.status(201).send(subsData.rows);
+    const { emailSubject, emailContent } = req.body;
 
+    const subsData = await pool.query("SELECT email FROM subscriptions;");
+    const subscribersEmails = subsData.rows.map(row => row.email);
+    // console.log("The subscribersEmails after map is :  " + subscribersEmails)
+    await sendEmailToSubs(subscribersEmails, emailSubject, emailContent);
+    res.status(201).send('Custom emails sent successfully to all subscribers.');
+
+  } catch (error) {
+    console.log(error)
+  }
+};
+exports.getAllEmail = async (req, res) => {
+  try {
+    const subsData = await pool.query("SELECT * FROM subscriptions;");
+    res.status(201).send(subsData.rows);
   } catch (error) {
     res.status(500).send(error.message);
   }
-}
+};
 
 exports.subscribe = async (req, res) => {
   try {
